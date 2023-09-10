@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5.0f;
     public float sensitivity = 2.0f;
     public bool invertY = false;
+    public TitleScreenManager titleScreenManager;
 
     private Rigidbody rb;
     private float yaw = 0.0f;
@@ -19,17 +20,18 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        // Lock the cursor to the center of the screen
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         // Prevent Rigidbody from rotating automatically.
         rb.freezeRotation = true;
     }
 
     void Update()
     {
+        // Check if game has started
+        if (!titleScreenManager.gameStarted)
+        {
+            return;
+        }
+
         // Movement
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
