@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EBook : Book
 {
+    // INHERITANCE
     private string fileFormat;
 
+    // ENCAPSULATION
     public string FileFormat
     {
         get { return fileFormat; }
@@ -14,11 +16,14 @@ public class EBook : Book
 
     private bool isFree;
 
+    // ENCAPSULATION
     public bool IsFree
     {
         get { return isFree; }
         set { isFree = value; }
     }
+
+    // POLYMORPHISM / ABSTRACTION
     public override void Read(PlayerController playerController)
     {
         playerController.DisplayMessage("Scrolling through the pages of an e-book...");

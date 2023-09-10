@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Book : MonoBehaviour
+// Define the IReadable interface
+public interface IReadable
+{
+    void Read(PlayerController playerController);
+}
+
+public abstract class Book : MonoBehaviour, IReadable
 {
     private string title;
     private string author;
     private int year;
     private string genre;
 
+    // ENCAPSULATION
     public string Title
     {
         get { return title; }
@@ -32,8 +39,7 @@ public class Book : MonoBehaviour
         get { return genre; }
         set { genre = value; }
     }
-    public virtual void Read(PlayerController playerController)
-    {
-        playerController.DisplayMessage("Reading a book...");
-    }
+
+    // ABSTRACTION
+    public abstract void Read(PlayerController playerController);
 }

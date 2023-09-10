@@ -74,10 +74,10 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                Book book = hit.transform.GetComponent<Book>();
-                if (book != null)
+                IReadable readable = hit.transform.GetComponent<Book>(); //ABSTRACTION
+                if (readable != null)
                 {
-                    book.Read(this);
+                    readable.Read(this);
                 }
             }
         }
