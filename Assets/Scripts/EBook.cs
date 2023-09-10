@@ -19,8 +19,8 @@ public class EBook : Book
         get { return isFree; }
         set { isFree = value; }
     }
-    public override void Read()
+    public override void Read(PlayerController playerController)
     {
-        Debug.Log("Scrolling through the pages of an e-book...");
+        playerController.DisplayMessage("Scrolling through the pages of an e-book...");
     }
 }

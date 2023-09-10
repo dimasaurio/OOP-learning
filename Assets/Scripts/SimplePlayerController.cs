@@ -1,8 +1,12 @@
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+    public TextMeshProUGUI messageText;
+    public float messageDuration = 3.0f;
+    private float messageTimer = 0f;
     public Camera playerCamera;
     public float speed = 5.0f;
     public float sensitivity = 2.0f;
@@ -50,6 +54,16 @@ public class PlayerController : MonoBehaviour
         pitch = Mathf.Clamp(pitch, -90f, 90f);
         playerCamera.transform.localEulerAngles = new Vector3(pitch, 0.0f, 0.0f);
 
+        // Message Timer to vanish the message
+        if (messageTimer > 0)
+        {
+            messageTimer -= Time.deltaTime;
+            if (messageTimer <= 0)
+            {
+                messageText.text = "";
+            }
+        }
+
         // Player Interaction
         if (Input.GetMouseButtonDown(0))
         {
@@ -61,10 +75,15 @@ public class PlayerController : MonoBehaviour
                 Book book = hit.transform.GetComponent<Book>();
                 if (book != null)
                 {
-                    book.Read();
+                    book.Read(this);
                 }
             }
         }
 
+    }
+    public void DisplayMessage(string message)
+    {
+        messageText.text = message;
+        messageTimer = messageDuration;
     }
 }

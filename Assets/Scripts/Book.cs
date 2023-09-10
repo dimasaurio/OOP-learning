@@ -32,8 +32,8 @@ public class Book : MonoBehaviour
         get { return genre; }
         set { genre = value; }
     }
-    public virtual void Read()
+    public virtual void Read(PlayerController playerController)
     {
-        Debug.Log("Reading a book...");
+        playerController.DisplayMessage("Reading a book...");
     }
 }

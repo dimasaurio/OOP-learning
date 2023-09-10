@@ -19,9 +19,9 @@ public class PrintedBook : Book
         get { return isDamaged; }
         set { isDamaged = value; }
     }
-    public override void Read()
+    public override void Read(PlayerController playerController)
     {
-        Debug.Log("Flipping through the pages of a printed book...");
+        playerController.DisplayMessage("Flipping through the pages of a printed book...");
     }
 
 }
