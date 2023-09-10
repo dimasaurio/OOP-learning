@@ -49,5 +49,21 @@ public class PlayerController : MonoBehaviour
 
         pitch = Mathf.Clamp(pitch, -90f, 90f);
         playerCamera.transform.localEulerAngles = new Vector3(pitch, 0.0f, 0.0f);
+
+        // Player Interaction
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                Book book = hit.transform.GetComponent<Book>();
+                if (book != null)
+                {
+                    book.Read();
+                }
+            }
+        }
     }
 }
